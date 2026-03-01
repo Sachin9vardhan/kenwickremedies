@@ -8,7 +8,7 @@ export default function Navbar() {
         <div className="flex items-center gap-3">
           <img src={logo} alt="Logo" className="h-10" />
           <span className="text-xl font-bold text-sky-600">
-            Kenwick Remedies
+            Kenwick Remedies  
           </span>
         </div>
 
