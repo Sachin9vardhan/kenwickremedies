@@ -21,13 +21,23 @@ export default function ProductGallery() {
   return (
     <section
       id="products"
-      className="py-20 px-15 "
+      className="py-20 px-15 relative"
     >
-      <div className="max-w-7xl mx-auto ">
+      <div className="max-w-7xl mx-auto relative">
 
         <h2 className="text-3xl font-bold mb-10 text-center">
           Our Products & Gallery
         </h2>
+
+        {/* IMAGE POPUP BELOW TITLE */}
+        {currentIndex !== null && (
+          <ImageModal
+            images={images}
+            currentIndex={currentIndex}
+            setCurrentIndex={setCurrentIndex}
+            onClose={() => setCurrentIndex(null)}
+          />
+        )}
 
         {/* Scrollable Container */}
         <div
@@ -79,13 +89,6 @@ export default function ProductGallery() {
         </div>
 
       </div>
-
-      <ImageModal
-  images={images}
-  currentIndex={currentIndex}
-  setCurrentIndex={setCurrentIndex}
-  onClose={() => setCurrentIndex(null)}
-/>
     </section>
   );
 }

@@ -6,8 +6,6 @@ export default function ImageModal({
   setCurrentIndex,
   onClose,
 }) {
-  if (currentIndex === null) return null;
-
   const prevImage = () => {
     setCurrentIndex((prev) =>
       prev === 0 ? images.length - 1 : prev - 1
@@ -20,7 +18,6 @@ export default function ImageModal({
     );
   };
 
-  // Keyboard support (optional but professional)
   useEffect(() => {
     const handleKey = (e) => {
       if (e.key === "ArrowLeft") prevImage();
@@ -33,39 +30,56 @@ export default function ImageModal({
   }, []);
 
   return (
-    <div className="fixed inset-0 bg-black/90 flex items-center justify-center z-50">
-
-      {/* Close Button */}
-      <button
-        className="absolute top-6 right-6 text-white text-3xl"
-        onClick={onClose}
+    <div
+      className="
+        absolute
+        left-0
+        right-0
+        top-20
+        flex
+        justify-center
+        backdrop-blur-md
+        bg-white/10
+        p-6
+        rounded-xl
+        z-40
+      "
+      onClick={onClose}
+    >
+      <div
+        className="relative max-w-4xl w-full"
+        onClick={(e) => e.stopPropagation()}
       >
-        ✕
-      </button>
+        {/* Close Button */}
+        <button
+          className="absolute -top-4 -right-4 bg-white shadow-md rounded-full w-10 h-10"
+          onClick={onClose}
+        >
+          ✕
+        </button>
 
-      {/* Left Arrow */}
-      <button
-        onClick={prevImage}
-        className="absolute left-6 text-white text-4xl bg-black/40 px-4 py-2 rounded-full hover:bg-black/70 transition"
-      >
-        ❮
-      </button>
+        {/* Left Arrow */}
+        <button
+          onClick={prevImage}
+          className="absolute left-0 top-1/2 -translate-y-1/2 text-3xl"
+        >
+          ❮
+        </button>
 
-      {/* Image */}
-      <img
-        src={images[currentIndex]}
-        alt="Zoomed"
-        className="max-h-[85vh] max-w-[85vw] rounded-lg shadow-2xl"
-      />
+        {/* Image */}
+        <img
+          src={images[currentIndex]}
+          className="w-full max-h-[65vh] object-contain rounded-lg shadow-xl"
+        />
 
-      {/* Right Arrow */}
-      <button
-        onClick={nextImage}
-        className="absolute right-6 text-white text-4xl bg-black/40 px-4 py-2 rounded-full hover:bg-black/70 transition"
-      >
-        ❯
-      </button>
-
+        {/* Right Arrow */}
+        <button
+          onClick={nextImage}
+          className="absolute right-0 top-1/2 -translate-y-1/2 text-3xl"
+        >
+          ❯
+        </button>
+      </div>
     </div>
   );
 }
